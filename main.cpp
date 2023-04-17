@@ -25,7 +25,7 @@ bool PromptQuestion(int x, int y){
     }
 }
 
-void quiz(){
+void quiz(vector<string>& highscores){
     int diff;
 
    cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
@@ -45,8 +45,6 @@ void quiz(){
 
    cout << "Your Score was: " << score << endl;
 
-    vector<string> highscores;
-
    if(score > 0){
         string username;
         cout << "What is your name \n";
@@ -64,10 +62,12 @@ void quiz(){
 int main() {    
    cout << "MATH QUIZ" << endl;
 
+   vector<string> highscores;
+
     char response;
 
     do{
-        quiz();
+        quiz(highscores);
         cout << "Shall we play a game? \n y for yes \n n for no \n";
         cin >> response;
     } while(response == 'y');
