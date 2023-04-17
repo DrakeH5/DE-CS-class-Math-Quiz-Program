@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime> 
+#include <vector>
 using namespace std;
 
 int RandNmb(int diff){
@@ -34,7 +35,7 @@ int main() {
 
    srand(time(0));
 
-   int score;
+   int score = 0;
 
    for(int i=0; i<10; i++){
 
@@ -45,6 +46,15 @@ int main() {
    }
 
    cout << "Your Score was: " << score << endl;
+
+    vector<string> highscores;
+
+   if(score > 0){
+        string username;
+        cout << "What is your name \n";
+        cin >> username;
+        highscores.push_back(username);
+   }
 
    return 0;
 }
