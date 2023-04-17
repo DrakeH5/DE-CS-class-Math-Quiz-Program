@@ -56,5 +56,11 @@ int main() {
         highscores.push_back(username);
    }
 
+   cout << "Highscore List: ";
+
+    for(int i=0; i<highscores.size(); i++){
+        cout << i+1 << ") " << highscores.at(i) << endl;
+    }
+
    return 0;
 }
