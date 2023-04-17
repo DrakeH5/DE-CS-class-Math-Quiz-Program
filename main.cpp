@@ -13,14 +13,14 @@ int RandNmb(int diff){
     }
 }
 
-void PromptQuestion(int x, int y){
+bool PromptQuestion(int x, int y){
     cout << x << "+" << y << endl;
     int answer;
     cin >> answer;
     if(answer == x+y) {
-        cout << "Correct!" << endl;
+        return true;
     } else {
-        cout << "YOU STUPID" << endl;
+        return false;
     }
 }
 
@@ -34,7 +34,17 @@ int main() {
 
    srand(time(0));
 
-   PromptQuestion(RandNmb(diff), RandNmb(diff));
+   int score;
+
+   for(int i=0; i<10; i++){
+
+        if(PromptQuestion(RandNmb(diff), RandNmb(diff))){
+            score++;
+        }
+
+   }
+
+   cout << "Your Score was: " << score << endl;
 
    return 0;
 }
