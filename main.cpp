@@ -25,9 +25,7 @@ bool PromptQuestion(int x, int y){
     }
 }
 
-int main() {    
-   cout << "MATH QUIZ" << endl;
-
+void quiz(){
     int diff;
 
    cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
@@ -61,6 +59,18 @@ int main() {
     for(int i=0; i<highscores.size(); i++){
         cout << i+1 << ") " << highscores.at(i) << endl;
     }
+}
+
+int main() {    
+   cout << "MATH QUIZ" << endl;
+
+    char response;
+
+    do{
+        quiz();
+        cout << "Shall we play a game? \n y for yes \n n for no \n";
+        cin >> response;
+    } while(response == 'y');
 
    return 0;
 }
