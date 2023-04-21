@@ -4,10 +4,13 @@
 #include <vector>
 using namespace std;
 
-int RandNmb(int diff){
-    if(diff == 1){
+
+enum difficulty { EASY, MEDIUM, HARD };
+
+int RandNmb(difficulty diff){
+    if(diff == EASY){
     return rand() % 9;
-    } else if(diff == 2){
+    } else if(diff == MEDIUM){
     return (rand() % 89) + 10;
     } else {
     return (rand() % 199) - 99;
@@ -26,10 +29,19 @@ bool PromptQuestion(int x, int y){
 }
 
 void quiz(vector<string>& highscores){
-    int diff;
+
+    difficulty diff;
 
    cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
-   cin >> diff;
+   int in;
+   cin >> in;
+   if(in == 1){
+        diff = EASY;
+   } else if(in == 2){
+        diff = MEDIUM;
+   } else if(in == 1){
+        diff = HARD;
+   }
 
    srand(time(0));
 
