@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime> 
 #include <vector>
+#include <cassert>
 using namespace std;
 
 
@@ -67,6 +68,18 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
         swap(highscoreNames.at(maxIndex), highscoreNames.at(i));
         swap(highscorePoints.at(maxIndex), highscorePoints.at(i));
     }
+}
+
+void unitTest(){
+    vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Jordon", "Shrek"};
+    vector<int> HighscoreScoresTest = {1, 10, 2, 5, 3, 7};
+    
+    sortHighscores(HighscoreNamesTest, HighscoreScoresTest);
+
+    vector<string> HighscoreNamesTestSORTED = {"Richard", "Shrek", "Zachias", "Jordon", "Jim Bob Joe", "Drake"};
+    vector<int> HighscoreScoresTestSORTED = {10, 7, 5, 3, 2, 1};
+
+    assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
 }
 
 
