@@ -17,14 +17,25 @@ int RandNmb(difficulty diff){
     }
 }
 
-bool PromptQuestion(int x, int y){
+bool PromptQuestion(int x, int y, int& score){
     cout << x << "+" << y << endl;
     int answer;
     cin >> answer;
     if(answer == x+y) {
+        score++;
         return true;
     } else {
         return false;
+    }
+}
+
+void MathProblem(difficulty diff, int& score){
+    int nmb1 = RandNmb(diff);
+    int nmb2 = RandNmb(diff);
+
+    if(PromptQuestion(nmb1, nmb2, score) == false){
+        cout << "Sorry, that is incorrect. \nTry Again \n";
+        PromptQuestion(nmb1, nmb2, score);
     }
 }
 
@@ -49,9 +60,7 @@ void quiz(vector<string>& highscores){
 
    for(int i=0; i<10; i++){
 
-        if(PromptQuestion(RandNmb(diff), RandNmb(diff))){
-            score++;
-        }
+        MathProblem(diff, score);
 
    }
 
