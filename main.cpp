@@ -35,24 +35,28 @@ void MathProblem(difficulty diff, int& score){
 
     if(PromptQuestion(nmb1, nmb2, score) == false){
         cout << "Sorry, that is incorrect. \nTry Again \n";
-        PromptQuestion(nmb1, nmb2, score);
+        if(PromptQuestion(nmb1, nmb2, score) == false) {
+            cout << "Correct answer: " << nmb1 + nmb2 << endl;
+        }
+    }
+}
+
+difficulty getDifficulty(){
+    cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
+    int in;
+    cin >> in;
+    if(in == 1){
+            return EASY;
+    } else if(in == 2){
+            return MEDIUM;
+    } else if(in == 1){
+            return HARD;
     }
 }
 
 void quiz(vector<string>& highscores){
 
-    difficulty diff;
-
-   cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
-   int in;
-   cin >> in;
-   if(in == 1){
-        diff = EASY;
-   } else if(in == 2){
-        diff = MEDIUM;
-   } else if(in == 1){
-        diff = HARD;
-   }
+    difficulty diff = getDifficulty();
 
    srand(time(0));
 
