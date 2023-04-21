@@ -54,7 +54,23 @@ difficulty getDifficulty(){
     }
 }
 
-void quiz(vector<string>& highscores){
+void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
+    for (int i = 0; i < highscorePoints.size() - 1; i++) {
+
+        int maxIndex = i;
+        for (int j = i + 1; j < highscorePoints.size(); j++) {
+            if (highscorePoints.at(j) > highscorePoints.at(maxIndex)) {
+                maxIndex = j;
+            }
+        }
+                 
+        swap(highscoreNames.at(maxIndex), highscoreNames.at(i));
+        swap(highscorePoints.at(maxIndex), highscorePoints.at(i));
+    }
+}
+
+
+void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
     difficulty diff = getDifficulty();
 
@@ -72,27 +88,31 @@ void quiz(vector<string>& highscores){
 
    if(score > 0){
         string username;
-        cout << "What is your name \n";
+        cout << "What is your name? \n";
         cin >> username;
-        highscores.push_back(username);
+        highscoreNames.push_back(username);
+        highscorePoints.push_back(score);
    }
 
-   cout << "Highscore List: ";
+    sortHighscores(highscoreNames, highscorePoints);
 
-    for(int i=0; i<highscores.size(); i++){
-        cout << i+1 << ") " << highscores.at(i) << endl;
+   cout << "Highscore List: \n";
+
+    for(int i=0; i<highscoreNames.size(); i++){
+        cout << i+1 << ") " << highscoreNames.at(i) << " --- " << highscorePoints.at(i) << endl;
     }
 }
 
 int main() {    
    cout << "MATH QUIZ" << endl;
 
-   vector<string> highscores;
+   vector<string> highscoreNames;
+   vector<int> highscorePoints;
 
     char response;
 
     do{
-        quiz(highscores);
+        quiz(highscoreNames, highscorePoints);
         cout << "Shall we play a game? \n y for yes \n n for no \n";
         cin >> response;
     } while(response == 'y');

@@ -36,6 +36,11 @@
   "C_Cpp_Runner.useAddressSanitizer": false,
   "files.associations": {
     "ostream": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "vector": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "array": "cpp",
+    "string_view": "cpp"
   }
 }
