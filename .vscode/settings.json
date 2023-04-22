@@ -42,5 +42,6 @@
     "string": "cpp",
     "array": "cpp",
     "string_view": "cpp"
-  }
+  },
+  "C_Cpp_Runner.showCompilationTime": false
 }

@@ -46,13 +46,14 @@ difficulty getDifficulty(){
     cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
     int in;
     cin >> in;
-    if(in == 1){
+    return difficulty(in-1);
+    /*if(in == 1){
             return EASY;
     } else if(in == 2){
             return MEDIUM;
-    } else if(in == 1){
+    } else if(in == 3){
             return HARD;
-    }
+    }*/
 }
 
 void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
