@@ -153,6 +153,18 @@ void endingScore(int score, vector<string>& highscoreNames, vector<int>& highsco
 
 }
 
+void displayHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
+
+    sortHighscores(highscoreNames, highscorePoints);
+
+   cout << "Highscore List: \n";
+
+    for(int i=0; i<highscoreNames.size(); i++){
+        cout << i+1 << ") " << highscoreNames.at(i) << " --- " << highscorePoints.at(i) << endl;
+    }
+
+}
+
 
 void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
@@ -170,13 +182,8 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
    endingScore(score, highscoreNames, highscorePoints);
 
-    sortHighscores(highscoreNames, highscorePoints);
+    displayHighscores(highscoreNames, highscorePoints);
 
-   cout << "Highscore List: \n";
-
-    for(int i=0; i<highscoreNames.size(); i++){
-        cout << i+1 << ") " << highscoreNames.at(i) << " --- " << highscorePoints.at(i) << endl;
-    }
 }
 
 
