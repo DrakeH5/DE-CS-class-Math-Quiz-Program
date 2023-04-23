@@ -8,6 +8,8 @@ using namespace std;
 
 enum difficulty { EASY, MEDIUM, HARD };
 
+enum mode {ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION};
+
 int RandNmb(difficulty diff){
     if(diff == EASY){
     return rand() % 9;
@@ -110,11 +112,20 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
     }
 }
 
+mode getMode(){
+    cout << "Which gamemode would you prefer? \n 1) ADDITION \n 2) SUBTRACTION \n 3) MULTIPLICATION \n 4) DIVISION \n";
+    int answer;
+    cin >> answer;
+    return mode(answer-1);
+}
+
 int main() {    
 
     UnitTest();
 
    cout << "MATH QUIZ" << endl;
+
+   mode selectedMode = getMode();
 
    vector<string> highscoreNames;
    vector<int> highscorePoints;
