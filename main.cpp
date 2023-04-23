@@ -6,14 +6,14 @@
 using namespace std;
 
 
-enum difficulty { EASY, MEDIUM, HARD };
+enum Difficulty { D_EASY, D_MEDIUM, D_HARD };
 
-enum mode {ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION };
+enum mode {M_ADDITION, M_SUBTRACTION, M_MULTIPLICATION, M_DIVISION };
 
-int RandNmb(difficulty diff){
-    if(diff == EASY){
+int RandNmb(Difficulty diff){
+    if(diff == D_EASY){
         return rand() % 9;
-    } else if(diff == MEDIUM){
+    } else if(diff == D_MEDIUM){
         return (rand() % 89) + 10;
     } else {
         return (rand() % 199) - 99;
@@ -30,10 +30,10 @@ void findNbmsThatMultiplyToBeUnderAValue(int& y, int& x, int midTop, int midLowe
     x = (rand() % max) * y;
 }
 
-void DivisonNmbs(difficulty diff, int& x, int& y){
-    if(diff == EASY){
+void DivisonNmbs(Difficulty diff, int& x, int& y){
+    if(diff == D_EASY){
         findNbmsThatMultiplyToBeUnderAValue(y, x, 4, 1);
-    } else if(diff == MEDIUM){
+    } else if(diff == D_MEDIUM){
         findNbmsThatMultiplyToBeUnderAValue(y, x, 40, 10);
     } else {
         findNbmsThatMultiplyToBeUnderAValue(y, x, 99, -49);
@@ -41,11 +41,11 @@ void DivisonNmbs(difficulty diff, int& x, int& y){
 }
 
 char operationSign(mode selectedMode){
-    if(selectedMode == SUBTRACTION){
+    if(selectedMode == M_SUBTRACTION){
         return '-';
-    } else if(selectedMode == MULTIPLICATION){
+    } else if(selectedMode == M_MULTIPLICATION){
         return '*';
-    } else if(selectedMode == DIVISION){
+    } else if(selectedMode == M_DIVISION){
         return '/';
     } else {
         return '+';
@@ -53,11 +53,11 @@ char operationSign(mode selectedMode){
 }
 
 int calcAnswer(mode selectedMode, int x, int y){
-    if(selectedMode == SUBTRACTION){
+    if(selectedMode == M_SUBTRACTION){
         return x - y;
-    } else if(selectedMode == MULTIPLICATION){
+    } else if(selectedMode == M_MULTIPLICATION){
         return x * y;
-    } else if(selectedMode == DIVISION){
+    } else if(selectedMode == M_DIVISION){
         return x / y;
     } else {
         return x + y;
@@ -76,12 +76,12 @@ bool PromptQuestion(int x, int y, int& score, mode selectedMode){
     }
 }
 
-void MathProblem(difficulty diff, int& score, mode selectedMode){
+void MathProblem(Difficulty diff, int& score, mode selectedMode){
 
     int nmb1;
     int nmb2;
 
-    if(selectedMode == DIVISION){
+    if(selectedMode == M_DIVISION){
         DivisonNmbs(diff, nmb1, nmb2);
     } else {
         nmb1 = RandNmb(diff);
@@ -96,11 +96,11 @@ void MathProblem(difficulty diff, int& score, mode selectedMode){
     }
 }
 
-difficulty getDifficulty(){
+Difficulty getDifficulty(){
     cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
     int in;
     cin >> in;
-    return difficulty(in-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
+    return Difficulty(in-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
 void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
@@ -168,7 +168,7 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
     mode selectedMode = getMode();
 
-    difficulty diff = getDifficulty();
+    Difficulty diff = getDifficulty();
 
    srand(time(0));
 
