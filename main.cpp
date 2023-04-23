@@ -150,6 +150,26 @@ void UnitTest(){
     assert(operationSign(M_DIVISION) == '/');
 
 
+    //unit tests for calculating answer
+    assert(calcAnswer(M_ADDITION, 2, 2) == 4);
+    assert(calcAnswer(M_ADDITION, 4, 2) == 6);
+    assert(calcAnswer(M_ADDITION, 2, 4) == 6);
+    assert(calcAnswer(M_ADDITION, 1, 9) == 10);
+    assert(calcAnswer(M_ADDITION, -40, 97) == 57);
+    assert(calcAnswer(M_MULTIPLICATION, 2, 2) == 4);
+    assert(calcAnswer(M_MULTIPLICATION, 1, 2) == 2);
+    assert(calcAnswer(M_MULTIPLICATION, 30, 20) == 600);
+    assert(calcAnswer(M_SUBTRACTION, 2, 2) == 0);
+    assert(calcAnswer(M_SUBTRACTION, 0, 2) == -2);
+    assert(calcAnswer(M_SUBTRACTION, 98, 12) == 86);
+    assert(calcAnswer(M_SUBTRACTION, 98, -12) == 110);
+    assert(calcAnswer(M_DIVISION, 99, 9) == 11);
+    assert(calcAnswer(M_DIVISION, -99, 9) == -11);
+    assert(calcAnswer(M_DIVISION, -99, -9) == 11);
+    assert(calcAnswer(M_DIVISION, 9, 3) == 3);
+
+
+
 }
 
 
