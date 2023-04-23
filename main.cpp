@@ -10,7 +10,9 @@ enum Difficulty { D_EASY, D_MEDIUM, D_HARD };
 
 enum mode {M_ADDITION, M_SUBTRACTION, M_MULTIPLICATION, M_DIVISION };
 
+
 int RandNmb(Difficulty diff){
+
     if(diff == D_EASY){
         return rand() % 9;
     } else if(diff == D_MEDIUM){
@@ -18,19 +20,25 @@ int RandNmb(Difficulty diff){
     } else {
         return (rand() % 199) - 99;
     }
+    
 }
 
 
 void findNbmsThatMultiplyToBeUnderAValue(int& y, int& x, int midTop, int midLower){
+
     y = rand() % midTop + midLower;
+
     int max = 0;
     while( abs(y * max) < ((midTop + midLower) * 2) ){
         max++;
     }
+
     x = (rand() % max) * y;
+
 }
 
 void DivisonNmbs(Difficulty diff, int& x, int& y){
+
     if(diff == D_EASY){
         findNbmsThatMultiplyToBeUnderAValue(y, x, 4, 1);
     } else if(diff == D_MEDIUM){
@@ -38,9 +46,12 @@ void DivisonNmbs(Difficulty diff, int& x, int& y){
     } else {
         findNbmsThatMultiplyToBeUnderAValue(y, x, 99, -49);
     }
+
 }
 
+
 char operationSign(mode selectedMode){
+
     if(selectedMode == M_SUBTRACTION){
         return '-';
     } else if(selectedMode == M_MULTIPLICATION){
@@ -50,9 +61,12 @@ char operationSign(mode selectedMode){
     } else {
         return '+';
     }
+
 }
 
+
 int calcAnswer(mode selectedMode, int x, int y){
+
     if(selectedMode == M_SUBTRACTION){
         return x - y;
     } else if(selectedMode == M_MULTIPLICATION){
@@ -62,19 +76,26 @@ int calcAnswer(mode selectedMode, int x, int y){
     } else {
         return x + y;
     }
+
 }
 
+
 bool PromptQuestion(int x, int y, int& score, mode selectedMode){
+
     cout << x << operationSign(selectedMode) << y << endl;
+
     int answer;
     cin >> answer;
+
     if(answer == calcAnswer(selectedMode, x, y)) {
         score++;
         return true;
     } else {
         return false;
     }
+
 }
+
 
 void MathProblem(Difficulty diff, int& score, mode selectedMode){
 
@@ -96,6 +117,7 @@ void MathProblem(Difficulty diff, int& score, mode selectedMode){
     }
 }
 
+
 Difficulty getDifficulty(){
     cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
     int in;
@@ -103,7 +125,9 @@ Difficulty getDifficulty(){
     return Difficulty(in-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
+
 void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
+
     for (int i = 0; i < highscorePoints.size() - 1; i++) {
 
         int maxIndex = i;
@@ -116,7 +140,9 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
         swap(highscoreNames.at(maxIndex), highscoreNames.at(i));
         swap(highscorePoints.at(maxIndex), highscorePoints.at(i));
     }
+
 }
+
 
 void UnitTest(){
 
@@ -168,8 +194,6 @@ void UnitTest(){
     assert(calcAnswer(M_DIVISION, -99, -9) == 11);
     assert(calcAnswer(M_DIVISION, 9, 3) == 3);
 
-
-
 }
 
 
@@ -195,6 +219,7 @@ void endingScore(int score, vector<string>& highscoreNames, vector<int>& highsco
 
 }
 
+
 void displayHighscores(const vector<string>& highscoreNames, const vector<int>& highscorePoints){
 
    cout << "Highscore List: \n";
@@ -212,17 +237,17 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
     Difficulty diff = getDifficulty();
 
-   srand(time(0));
+    srand(time(0));
 
-   int score = 0;
+    int score = 0;
 
-   for(int i=0; i<10; i++){
-        MathProblem(diff, score, selectedMode);
-   }
+    for(int i=0; i<10; i++){
+            MathProblem(diff, score, selectedMode);
+    }
 
-   endingScore(score, highscoreNames, highscorePoints);
+    endingScore(score, highscoreNames, highscorePoints);
 
-   sortHighscores(highscoreNames, highscorePoints);
+    sortHighscores(highscoreNames, highscorePoints);
 
     displayHighscores(highscoreNames, highscorePoints);
 
@@ -239,7 +264,7 @@ int main() {
    vector<int> highscorePoints;
 
     char response;
-
+    
     do{
         quiz(highscoreNames, highscorePoints);
         cout << "Shall we play a game? \n y for yes \n n for no \n";
