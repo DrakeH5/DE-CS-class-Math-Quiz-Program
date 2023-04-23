@@ -119,6 +119,8 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
 }
 
 void UnitTest(){
+
+
     vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Ron Burgandy", "Shrek"};
     vector<int> HighscoreScoresTest = {1, 10, 2, 5, 5, 7};
     
@@ -128,6 +130,19 @@ void UnitTest(){
     vector<int> HighscoreScoresTestSORTED = {10, 7, 5, 5, 2, 1};
 
     assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
+
+
+    HighscoreNamesTest = {"Frankenstein", "Ricky Bobby", "LEROY JENKINS", "Elvis", "Waylon Jennings"};
+    HighscoreScoresTest = {0, 10, -1, 4, 5};
+    
+    sortHighscores(HighscoreNamesTest, HighscoreScoresTest);
+
+    HighscoreNamesTestSORTED = {"Ricky Bobby", "Waylon Jennings", "Elvis", "Frankenstein", "LEROY JENKINS"};
+    HighscoreScoresTestSORTED = {10, 5, 4, 0, -1};
+
+    assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
+
+
 }
 
 
