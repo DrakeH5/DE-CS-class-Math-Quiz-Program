@@ -119,13 +119,13 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
 }
 
 void UnitTest(){
-    vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Jordon", "Shrek"};
-    vector<int> HighscoreScoresTest = {1, 10, 2, 5, 3, 7};
+    vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Ron Burgandy", "Shrek"};
+    vector<int> HighscoreScoresTest = {1, 10, 2, 5, 5, 7};
     
     sortHighscores(HighscoreNamesTest, HighscoreScoresTest);
 
-    vector<string> HighscoreNamesTestSORTED = {"Richard", "Shrek", "Zachias", "Jordon", "Jim Bob Joe", "Drake"};
-    vector<int> HighscoreScoresTestSORTED = {10, 7, 5, 3, 2, 1};
+    vector<string> HighscoreNamesTestSORTED = {"Richard", "Shrek", "Zachias", "Ron Burgandy", "Jim Bob Joe", "Drake"};
+    vector<int> HighscoreScoresTestSORTED = {10, 7, 5, 5, 2, 1};
 
     assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
 }
@@ -153,9 +153,7 @@ void endingScore(int score, vector<string>& highscoreNames, vector<int>& highsco
 
 }
 
-void displayHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
-
-    sortHighscores(highscoreNames, highscorePoints);
+void displayHighscores(const vector<string>& highscoreNames, const vector<int>& highscorePoints){
 
    cout << "Highscore List: \n";
 
@@ -181,6 +179,8 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
    }
 
    endingScore(score, highscoreNames, highscorePoints);
+
+   sortHighscores(highscoreNames, highscorePoints);
 
     displayHighscores(highscoreNames, highscorePoints);
 
