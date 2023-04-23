@@ -64,7 +64,7 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
     }
 }
 
-void unitTest(){
+void UnitTest(){
     vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Jordon", "Shrek"};
     vector<int> HighscoreScoresTest = {1, 10, 2, 5, 3, 7};
     
@@ -111,6 +111,9 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 }
 
 int main() {    
+
+    UnitTest();
+
    cout << "MATH QUIZ" << endl;
 
    vector<string> highscoreNames;
