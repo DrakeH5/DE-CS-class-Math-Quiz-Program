@@ -8,23 +8,67 @@ using namespace std;
 
 enum difficulty { EASY, MEDIUM, HARD };
 
-enum mode {ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION};
+enum mode {ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION };
 
 int RandNmb(difficulty diff){
     if(diff == EASY){
-    return rand() % 9;
+        return rand() % 9;
     } else if(diff == MEDIUM){
-    return (rand() % 89) + 10;
+        return (rand() % 89) + 10;
     } else {
-    return (rand() % 199) - 99;
+        return (rand() % 199) - 99;
     }
 }
 
-bool PromptQuestion(int x, int y, int& score){
-    cout << x << "+" << y << endl;
+
+void findNbmsThatMultiplyToBeUnderAValue(int& y, int& x, int midTop, int midLower){
+    y = rand() % midTop + midLower;
+    int max = 0;
+    while( abs(y * max) < ((midTop + midLower) * 2) ){
+        max++;
+    }
+    x = (rand() % max) * y;
+}
+
+void DivisonNmbs(difficulty diff, int& x, int& y){
+    if(diff == EASY){
+        findNbmsThatMultiplyToBeUnderAValue(y, x, 4, 1);
+    } else if(diff == MEDIUM){
+        findNbmsThatMultiplyToBeUnderAValue(y, x, 40, 10);
+    } else {
+        findNbmsThatMultiplyToBeUnderAValue(y, x, 99, -49);
+    }
+}
+
+char operationSign(mode selectedMode){
+    if(selectedMode == SUBTRACTION){
+        return '-';
+    } else if(selectedMode == MULTIPLICATION){
+        return '*';
+    } else if(selectedMode == DIVISION){
+        return '/';
+    } else {
+        return '+';
+    }
+}
+
+int calcAnswer(mode selectedMode, int x, int y){
+    if(selectedMode == SUBTRACTION){
+        return x - y;
+    } else if(selectedMode == MULTIPLICATION){
+        return x * y;
+    } else if(selectedMode == DIVISION){
+        return x / y;
+    } else {
+        return x + y;
+    }
+}
+
+bool PromptQuestion(int x, int y, int& score, mode selectedMode){
+    cout << x << operationSign(selectedMode) << y << endl;
     int answer;
     cin >> answer;
-    if(answer == x+y) {
+    if(answer == calcAnswer(selectedMode, x, y)) {
         score++;
         return true;
     } else {
@@ -32,14 +76,22 @@ bool PromptQuestion(int x, int y, int& score){
     }
 }
 
-void MathProblem(difficulty diff, int& score){
-    int nmb1 = RandNmb(diff);
-    int nmb2 = RandNmb(diff);
+void MathProblem(difficulty diff, int& score, mode selectedMode){
 
-    if(PromptQuestion(nmb1, nmb2, score) == false){
+    int nmb1;
+    int nmb2;
+
+    if(selectedMode == DIVISION){
+        DivisonNmbs(diff, nmb1, nmb2);
+    } else {
+        nmb1 = RandNmb(diff);
+        nmb2 = RandNmb(diff);
+    }
+
+    if(PromptQuestion(nmb1, nmb2, score, selectedMode) == false){
         cout << "Sorry, that is incorrect. \nTry Again \n";
-        if(PromptQuestion(nmb1, nmb2, score) == false) {
-            cout << "Correct answer: " << nmb1 + nmb2 << endl;
+        if(PromptQuestion(nmb1, nmb2, score, selectedMode) == false) {
+            cout << "Correct answer: " << calcAnswer(selectedMode, nmb1, nmb2) << endl;
         }
     }
 }
@@ -79,7 +131,16 @@ void UnitTest(){
 }
 
 
+mode getMode(){
+    cout << "Which gamemode would you prefer? \n 1) ADDITION \n 2) SUBTRACTION \n 3) MULTIPLICATION \n 4) DIVISION \n";
+    int answer;
+    cin >> answer;
+    return mode(answer-1);
+}
+
 void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
+
+    mode selectedMode = getMode();
 
     difficulty diff = getDifficulty();
 
@@ -89,7 +150,7 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
    for(int i=0; i<10; i++){
 
-        MathProblem(diff, score);
+        MathProblem(diff, score, selectedMode);
 
    }
 
@@ -112,20 +173,12 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
     }
 }
 
-mode getMode(){
-    cout << "Which gamemode would you prefer? \n 1) ADDITION \n 2) SUBTRACTION \n 3) MULTIPLICATION \n 4) DIVISION \n";
-    int answer;
-    cin >> answer;
-    return mode(answer-1);
-}
 
 int main() {    
 
     UnitTest();
 
    cout << "MATH QUIZ" << endl;
-
-   mode selectedMode = getMode();
 
    vector<string> highscoreNames;
    vector<int> highscorePoints;
