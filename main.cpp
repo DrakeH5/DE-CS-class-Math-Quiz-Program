@@ -138,6 +138,22 @@ mode getMode(){
     return mode(answer-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
+
+void endingScore(int score, vector<string>& highscoreNames, vector<int>& highscorePoints){
+
+    cout << "Your Score was: " << score << endl;
+
+   if(score > 0){
+        string username;
+        cout << "What is your name? \n";
+        cin >> username;
+        highscoreNames.push_back(username);
+        highscorePoints.push_back(score);
+   }
+
+}
+
+
 void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
     mode selectedMode = getMode();
@@ -149,20 +165,10 @@ void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
    int score = 0;
 
    for(int i=0; i<10; i++){
-
         MathProblem(diff, score, selectedMode);
-
    }
 
-   cout << "Your Score was: " << score << endl;
-
-   if(score > 0){
-        string username;
-        cout << "What is your name? \n";
-        cin >> username;
-        highscoreNames.push_back(username);
-        highscorePoints.push_back(score);
-   }
+   endingScore(score, highscoreNames, highscorePoints);
 
     sortHighscores(highscoreNames, highscorePoints);
 
