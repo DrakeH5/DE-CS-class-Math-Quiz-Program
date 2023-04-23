@@ -100,7 +100,7 @@ difficulty getDifficulty(){
     cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
     int in;
     cin >> in;
-    return difficulty(in-1);
+    return difficulty(in-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
 void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
@@ -135,7 +135,7 @@ mode getMode(){
     cout << "Which gamemode would you prefer? \n 1) ADDITION \n 2) SUBTRACTION \n 3) MULTIPLICATION \n 4) DIVISION \n";
     int answer;
     cin >> answer;
-    return mode(answer-1);
+    return mode(answer-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
 void quiz(vector<string>& highscoreNames, vector<int>& highscorePoints){
