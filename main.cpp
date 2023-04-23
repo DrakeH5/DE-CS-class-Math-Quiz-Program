@@ -120,7 +120,7 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
 
 void UnitTest(){
 
-
+    //unit tests for sorting
     vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Ron Burgandy", "Shrek"};
     vector<int> HighscoreScoresTest = {1, 10, 2, 5, 5, 7};
     
@@ -141,6 +141,13 @@ void UnitTest(){
     HighscoreScoresTestSORTED = {10, 5, 4, 0, -1};
 
     assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
+
+    
+    //unit tests for getting right sign
+    assert(operationSign(M_ADDITION) == '+');
+    assert(operationSign(M_SUBTRACTION) == '-');
+    assert(operationSign(M_MULTIPLICATION) == '*');
+    assert(operationSign(M_DIVISION) == '/');
 
 
 }
