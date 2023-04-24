@@ -122,6 +122,10 @@ Difficulty getDifficulty(){
     cout << "What is your prefered difficulty?" << endl << " 1) Beginner \n 2) Intermediant \n 3) Advanced \n";
     int in;
     cin >> in;
+    while(in < 1 || in > 3){
+        cout << "Number not associated with a difficulty level. Please enter a number 1-3 \n";
+        cin >> in;
+    }
     return Difficulty(in-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
@@ -201,6 +205,10 @@ mode getMode(){
     cout << "Which gamemode would you prefer? \n 1) ADDITION \n 2) SUBTRACTION \n 3) MULTIPLICATION \n 4) DIVISION \n";
     int answer;
     cin >> answer;
+    while(answer < 1 || answer > 4){
+        cout << "Number not associated with a gamemode. Please enter a number 1-4 \n";
+        cin >> answer;
+    }
     return mode(answer-1); //learned from https://stackoverflow.com/questions/321801/enum-c-get-by-index
 }
 
@@ -267,7 +275,7 @@ int main() {
     
     do{
         quiz(highscoreNames, highscorePoints);
-        cout << "Shall we play a game? \n y for yes \n n for no \n";
+        cout << "Shall we play a game? \n y for yes \n press any other key to quit \n";
         cin >> response;
     } while(response == 'y');
 
