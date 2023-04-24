@@ -258,7 +258,7 @@ int main() {
 
     UnitTest();
 
-   cout << "MATH QUIZ" << endl;
+   cout << "MATH QUIZ" << endl;                                                            
 
    vector<string> highscoreNames;
    vector<int> highscorePoints;
@@ -273,3 +273,5 @@ int main() {
 
    return 0;
 }
+
+//TODO: Make it so you cant enter anything other than 1 2 3 or y/n on options
