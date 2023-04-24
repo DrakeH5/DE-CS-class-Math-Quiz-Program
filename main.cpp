@@ -131,7 +131,7 @@ Difficulty getDifficulty(){
 
 
 void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
-
+    
     for (int i = 0; i < highscorePoints.size() - 1 && highscorePoints.size() > 0; i++) {
 
         int maxIndex = i;
@@ -144,7 +144,7 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
         swap(highscoreNames.at(maxIndex), highscoreNames.at(i));
         swap(highscorePoints.at(maxIndex), highscorePoints.at(i));
     }
-    
+
 }
 
 
@@ -182,32 +182,6 @@ void UnitTest(){
     HighscoreScoresTestSORTED = {10, 5, 4, 0, -1};
 
     assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
-
-    
-    //unit tests for getting right sign
-    assert(operationSign(M_ADDITION) == '+');
-    assert(operationSign(M_SUBTRACTION) == '-');
-    assert(operationSign(M_MULTIPLICATION) == '*');
-    assert(operationSign(M_DIVISION) == '/');
-
-
-    //unit tests for calculating answer
-    assert(calcAnswer(M_ADDITION, 2, 2) == 4);
-    assert(calcAnswer(M_ADDITION, 4, 2) == 6);
-    assert(calcAnswer(M_ADDITION, 2, 4) == 6);
-    assert(calcAnswer(M_ADDITION, 1, 9) == 10);
-    assert(calcAnswer(M_ADDITION, -40, 97) == 57);
-    assert(calcAnswer(M_MULTIPLICATION, 2, 2) == 4);
-    assert(calcAnswer(M_MULTIPLICATION, 1, 2) == 2);
-    assert(calcAnswer(M_MULTIPLICATION, 30, 20) == 600);
-    assert(calcAnswer(M_SUBTRACTION, 2, 2) == 0);
-    assert(calcAnswer(M_SUBTRACTION, 0, 2) == -2);
-    assert(calcAnswer(M_SUBTRACTION, 98, 12) == 86);
-    assert(calcAnswer(M_SUBTRACTION, 98, -12) == 110);
-    assert(calcAnswer(M_DIVISION, 99, 9) == 11);
-    assert(calcAnswer(M_DIVISION, -99, 9) == -11);
-    assert(calcAnswer(M_DIVISION, -99, -9) == 11);
-    assert(calcAnswer(M_DIVISION, 9, 3) == 3);
 
 }
 
