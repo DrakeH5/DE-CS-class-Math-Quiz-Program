@@ -132,7 +132,7 @@ Difficulty getDifficulty(){
 
 void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints){
 
-    for (int i = 0; i < highscorePoints.size() - 1; i++) {
+    for (int i = 0; i < highscorePoints.size() - 1 && highscorePoints.size() > 0; i++) {
 
         int maxIndex = i;
         for (int j = i + 1; j < highscorePoints.size(); j++) {
@@ -144,20 +144,31 @@ void sortHighscores(vector<string>& highscoreNames, vector<int>& highscorePoints
         swap(highscoreNames.at(maxIndex), highscoreNames.at(i));
         swap(highscorePoints.at(maxIndex), highscorePoints.at(i));
     }
-
+    
 }
 
 
 void UnitTest(){
 
     //unit tests for sorting
-    vector<string> HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Ron Burgandy", "Shrek"};
-    vector<int> HighscoreScoresTest = {1, 10, 2, 5, 5, 7};
+    vector<string> HighscoreNamesTest = {};
+    vector<int> HighscoreScoresTest = {};
     
     sortHighscores(HighscoreNamesTest, HighscoreScoresTest);
 
-    vector<string> HighscoreNamesTestSORTED = {"Richard", "Shrek", "Zachias", "Ron Burgandy", "Jim Bob Joe", "Drake"};
-    vector<int> HighscoreScoresTestSORTED = {10, 7, 5, 5, 2, 1};
+    vector<string> HighscoreNamesTestSORTED = {};
+    vector<int> HighscoreScoresTestSORTED = {};
+
+    assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
+
+
+    HighscoreNamesTest = {"Drake", "Richard", "Jim Bob Joe", "Zachias", "Ron Burgandy", "Shrek"};
+    HighscoreScoresTest = {1, 10, 2, 5, 5, 7};
+    
+    sortHighscores(HighscoreNamesTest, HighscoreScoresTest);
+
+    HighscoreNamesTestSORTED = {"Richard", "Shrek", "Zachias", "Ron Burgandy", "Jim Bob Joe", "Drake"};
+    HighscoreScoresTestSORTED = {10, 7, 5, 5, 2, 1};
 
     assert(HighscoreNamesTest == HighscoreNamesTestSORTED && HighscoreScoresTest == HighscoreScoresTestSORTED);
 
@@ -281,5 +292,3 @@ int main() {
 
    return 0;
 }
-
-//TODO: Make it so you cant enter anything other than 1 2 3 or y/n on options
